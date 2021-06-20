@@ -1,0 +1,3 @@
+include ':viewmodel'
+include ':app'
+rootProject.name = "JetpackStudy"
