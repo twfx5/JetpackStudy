@@ -13,7 +13,11 @@ class MainActivity : AppCompatActivity(), UserModel.LoginStateChange {
     private lateinit var btLogin : Button
     private lateinit var tvState : TextView
 
-    private lateinit var userModel: UserModel
+    // 使用委托
+    private val userModel by lazy {
+       // 只会初始化一次 UserModel，并且是第一次调用 userModel 时初始化
+       UserModel(null, null)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,9 +37,8 @@ class MainActivity : AppCompatActivity(), UserModel.LoginStateChange {
     }
 
     private fun toLogin() {
-        val name = edName.text.toString()
-        val pwd = edPwd.text.toString()
-        userModel = UserModel(name, pwd)
+        userModel.name = edName.text.toString()
+        userModel.pwd = edPwd.text.toString()
         userModel.doLogin(this)
     }
 

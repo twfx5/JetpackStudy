@@ -27,7 +27,6 @@ class Fragment2 : Fragment() {
             override fun onChanged(t: Int?) {
                 seekBar.progress = t!!
             }
-
         })
 
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {

@@ -2,7 +2,8 @@ package com.wang.jetpackstudy
 
 import java.util.*
 
-data class UserModel(var name : String, var pwd : String) {
+data class UserModel(var name: String?, var pwd: String?) {
+    constructor() : this(null, null)
 
     private val random = Random()
 
