@@ -1,3 +1,5 @@
+include ':databing'
+include ':livedata'
 include ':viewmodel'
 include ':app'
 rootProject.name = "JetpackStudy"
