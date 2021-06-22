@@ -25,7 +25,7 @@ class Fragment1 : Fragment() {
             )
         ).get(MyViewModel::class.java)
         viewModel.getProgress().observe(activity as MainActivity,
-            { t -> seekBar.progress = t!! })
+                Observer<Int> { t -> seekBar.progress = t!! })
 
         seekBar.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
