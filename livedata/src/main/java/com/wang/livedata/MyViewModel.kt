@@ -16,4 +16,8 @@ class MyViewModel : ViewModel() {
     fun addNumber(num: Int) {
         number?.value = num + number?.value!!
     }
+
+    fun loopAddNumber(num: Int) {
+        number?.postValue(num + number?.value!!)
+    }
 }
