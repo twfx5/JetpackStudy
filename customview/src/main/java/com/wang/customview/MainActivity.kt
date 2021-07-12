@@ -1,4 +1,4 @@
-package com.wang.customview.drawing
+package com.wang.customview
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,6 +14,9 @@ class MainActivity : AppCompatActivity() {
 //        setContentView(R.layout.activity_dash)
 
         // 饼图
-        setContentView(R.layout.activity_pie)
+//        setContentView(R.layout.activity_pie)
+
+        // 头像
+        setContentView(R.layout.activity_avatar)
     }
 }
