@@ -22,6 +22,9 @@
 
         </activity>
         <activity android:name=".net.TestNetActivity" >
+
+        </activity>
+        <activity android:name=".FlowActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

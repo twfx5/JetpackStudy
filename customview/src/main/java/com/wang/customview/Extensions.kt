@@ -1,10 +1,9 @@
-package com.wang.customview.drawing
+package com.wang.customview
 
 import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.TypedValue
-import com.wang.customview.R
 
 
 //fun Float.dp2px() : Float {
@@ -22,7 +21,11 @@ val Float.px
 //val Int.px
 //    get() = this.toFloat().px.toInt()
 
-// 获取头像
+/**
+ * 获取头像
+ * 这里不能用系统的 Resources.getSystem()
+ * 需要用本地的 resources
+ */
 fun getAvatar(resources: Resources, width: Int) : Bitmap {
     val options = BitmapFactory.Options()
     options.inJustDecodeBounds = true

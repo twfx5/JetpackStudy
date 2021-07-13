@@ -7,6 +7,7 @@ import android.graphics.Paint.ANTI_ALIAS_FLAG
 import android.graphics.Path
 import android.util.AttributeSet
 import android.view.View
+import com.wang.customview.px
 
 // 常量
 // const val RADIUS = 200f
