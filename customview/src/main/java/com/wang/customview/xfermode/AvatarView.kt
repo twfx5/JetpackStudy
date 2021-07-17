@@ -48,17 +48,18 @@ class AvatarView(context: Context?, attrs: AttributeSet?) : View(context, attrs)
          */
         // 创建一块离屏缓冲，大小是图片的bounds
         val saveLayer = canvas.saveLayer(bounds, null)
-        // destination 目标：圆形
+        // destination 绘制目标图形：圆形
         canvas.drawOval(bounds, paint)
         // 给 Paint 设置 xfermode
         paint.xfermode = XFERMODE
-        // source 资源：头像
+        // source 绘制资源：头像
         canvas.drawBitmap(
             getAvatar(resources, IMAGE_WIDTH.toInt()),
             leftPadding,
             topPadding,
             paint
         )
+        // 把Xfermode置空和恢复
         paint.xfermode = null
         canvas.restoreToCount(saveLayer)
     }

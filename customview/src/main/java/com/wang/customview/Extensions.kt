@@ -18,8 +18,8 @@ val Float.px
         Resources.getSystem().displayMetrics
     )
 
-//val Int.px
-//    get() = this.toFloat().px.toInt()
+val Int.px
+    get() = this.toFloat().px.toInt()
 
 /**
  * 获取头像
