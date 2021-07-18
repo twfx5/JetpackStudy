@@ -3,10 +3,14 @@ package com.wang.customview
 import android.animation.Keyframe
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
+import android.graphics.Bitmap
+import android.graphics.drawable.ColorDrawable
 import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
+import androidx.core.graphics.drawable.toBitmap
+import androidx.core.graphics.drawable.toDrawable
 import com.wang.customview.R
 import com.wang.customview.animation.CircleView
 import kotlinx.coroutines.*
@@ -25,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 //        setContentView(R.layout.activity_pie)
 
         // 头像
-//        setContentView(R.layout.activity_avatar)
+        setContentView(R.layout.activity_avatar)
 
         // Path 裁切
 //        setContentView(R.layout.activity_clip)
@@ -46,6 +50,7 @@ class MainActivity : AppCompatActivity() {
          * 使用KeyFrame + PropertyValuesHolder 来拆分一个动画的不同阶段
          * 比如移动一段距离，前20%先快、然后60%慢，最后20%再快
          */
+        /*
         val length = 200f.px // 移动的总距离
         setContentView(R.layout.activity_move_view)
         val imageView = findViewById<ImageView>(R.id.image)
@@ -61,7 +66,17 @@ class MainActivity : AppCompatActivity() {
         animator.startDelay = 1000
         animator.duration = 1000
         animator.start()
+         */
 
+
+        // 使用 ktx 的方法来互转
+        // Bitmap 转为 Drawable
+        val bitmap = Bitmap.createBitmap(20, 20, Bitmap.Config.ARGB_8888)
+        bitmap.toDrawable(resources)
+
+        // Drawable 转为 Bitmap
+        val drawable = ColorDrawable()
+        drawable.toBitmap()
     }
 
 

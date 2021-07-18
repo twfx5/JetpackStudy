@@ -52,7 +52,7 @@ class AvatarView(context: Context?, attrs: AttributeSet?) : View(context, attrs)
         canvas.drawOval(bounds, paint)
         // 给 Paint 设置 xfermode
         paint.xfermode = XFERMODE
-        // source 绘制资源：头像
+        // source 绘制资源：方形 头像
         canvas.drawBitmap(
             getAvatar(resources, IMAGE_WIDTH.toInt()),
             leftPadding,
