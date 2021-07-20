@@ -71,12 +71,17 @@ class MainActivity : AppCompatActivity() {
 
         // 使用 ktx 的方法来互转
         // Bitmap 转为 Drawable
+        /*
         val bitmap = Bitmap.createBitmap(20, 20, Bitmap.Config.ARGB_8888)
         bitmap.toDrawable(resources)
 
         // Drawable 转为 Bitmap
         val drawable = ColorDrawable()
         drawable.toBitmap()
+         */
+
+        // Material EditText
+        setContentView(R.layout.activity_material_edittext)
     }
 
 

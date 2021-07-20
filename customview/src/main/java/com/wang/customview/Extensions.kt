@@ -21,6 +21,16 @@ val Float.px
 val Int.px
     get() = this.toFloat().px.toInt()
 
+val Float.dp
+    get() = TypedValue.applyDimension(
+        TypedValue.COMPLEX_UNIT_DIP,
+        this,
+        Resources.getSystem().displayMetrics
+    )
+
+val Int.dp
+    get() = this.toFloat().dp
+
 /**
  * 获取头像
  * 这里不能用系统的 Resources.getSystem()
