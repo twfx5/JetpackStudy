@@ -81,7 +81,9 @@ class MainActivity : AppCompatActivity() {
          */
 
         // Material EditText
-        setContentView(R.layout.activity_material_edittext)
+//        setContentView(R.layout.activity_material_edittext)
+
+        setContentView(R.layout.activity_square)
     }
 
 
