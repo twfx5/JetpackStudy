@@ -17,15 +17,13 @@ class CircleView(context: Context, attrs: AttributeSet?) : View(context, attrs) 
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-//        val rawWidth = MeasureSpec.getSize(widthMeasureSpec)
-//        val rawHeight = MeasureSpec.getSize(heightMeasureSpec)
-//        Log.d(TAG, "onMeasure: rawWidth = $rawWidth, rawHeight = $rawHeight" )
-//        val size = ((PADDING + RADIUS) * 2).toInt()
-//        val width = resolveSize(size, widthMeasureSpec)
-//        val height = resolveSize(size, heightMeasureSpec)
-
-        Log.d(TAG, "onMeasure: measuredWidth = $measuredWidth, measuredHeight = $measuredHeight" )
-        setMeasuredDimension(400.dp.toInt(), 400.dp.toInt())
+        // 自己设置宽高为 400dp x 400dp
+        val size = ((PADDING + RADIUS) * 2).toInt()
+        // 根据 MeasureSpec 修正自己的设置
+        val width = resolveSize(size, widthMeasureSpec)
+        val height = resolveSize(size, heightMeasureSpec)
+        // 将实际的宽高保存下来
+        setMeasuredDimension(width, height)
     }
 
     override fun onDraw(canvas: Canvas) {
