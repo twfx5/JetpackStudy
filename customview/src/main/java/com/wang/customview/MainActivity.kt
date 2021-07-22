@@ -13,7 +13,6 @@ import androidx.core.graphics.drawable.toBitmap
 import androidx.core.graphics.drawable.toDrawable
 import com.wang.customview.R
 import com.wang.customview.animation.CircleView
-import kotlinx.coroutines.*
 import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
@@ -83,7 +82,11 @@ class MainActivity : AppCompatActivity() {
         // Material EditText
 //        setContentView(R.layout.activity_material_edittext)
 
-        setContentView(R.layout.activity_square)
+        // 简单改写已有 View 的尺寸,变为原尺寸的一半
+//        setContentView(R.layout.activity_square)
+
+        // 完全自定义 View 的尺寸
+        setContentView(R.layout.activity_resize_circle)
     }
 
 
