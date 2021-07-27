@@ -91,7 +91,7 @@ class MainActivity : AppCompatActivity() {
         // 自定义 ViewGroup，横向排列一组图片
 //        setContentView(R.layout.activity_single_view)
 
-        // 支持 双向滑动的 ImageView
+        // 支持 双击缩放 和 双向滑动的 ImageView
         setContentView(R.layout.activity_scalable_imageview)
     }
 
