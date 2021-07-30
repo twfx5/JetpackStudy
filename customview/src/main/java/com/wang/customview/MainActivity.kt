@@ -92,7 +92,10 @@ class MainActivity : AppCompatActivity() {
 //        setContentView(R.layout.activity_single_view)
 
         // 支持 双击缩放 和 双向滑动的 ImageView
-        setContentView(R.layout.activity_scalable_imageview)
+//        setContentView(R.layout.activity_scalable_imageview)
+
+        // 支持 双击缩放 和 双向滑动的 ImageView，代码做了优化处理
+        setContentView(R.layout.activity_comp_scalable_imageview)
     }
 
 

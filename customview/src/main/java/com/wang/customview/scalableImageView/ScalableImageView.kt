@@ -5,7 +5,6 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.util.AttributeSet
-import android.util.Log
 import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.View
@@ -41,8 +40,13 @@ class ScalableImageView(context: Context?, attrs: AttributeSet?) : View(context,
     private var offsetX = 0f
     private var offsetY = 0f
 
+    /**
+     * GestureDetectorCompat 是检查器 -> 探测行为
+     * this ：listener 是监听器 -> 回调
+     */
     private val gestureDetector = GestureDetectorCompat(context, this).apply {
-        // 设置双击监听
+        // 设置双击监听，这行代码可以省略
+        // 只需要实现接口 GestureDetector.OnDoubleTapListener 内部会帮我们 setOnDoubleTapListener
         setOnDoubleTapListener(this@ScalableImageView)
     }
 
@@ -80,9 +84,15 @@ class ScalableImageView(context: Context?, attrs: AttributeSet?) : View(context,
 
     /**
      *  创建 OverScroller 对象
-     *  OverScroller 就像一个秒表
+     *  OverScroller 和 Scroller 就像一个秒表
      *  我们调用 OverScroller.computeScrollOffset() 就相当于掐一下秒表
      *  可以得到当前的位置
+     *
+     *  OverScroller 和 Scroller 的不同在于
+     *  1、OverScroller 10个参数的方法，可以过度滑动（类似iOS的效果，最后两个参数表示过度滑动的距离）
+     *  2、OverScroller 有个初始速度（快速滑动初速度大，慢速滑动初速度小），
+     *     它的滑动模型是：从初速度 -> 慢慢减小到0，做惯性滑动效果较好
+     *  3、Scroller 的滑动模型是：初速度 0 -> 某个值 -> 最后到 0 （快速滑动和慢速滑动效果是一样的）
      */
     private val scroller = OverScroller(context)
 
@@ -150,8 +160,8 @@ class ScalableImageView(context: Context?, attrs: AttributeSet?) : View(context,
     }
 
     /**
-     * onScroll 不是 view 移动
-     * 是手指移动，相当于手指在 view 上的 Move 事件
+     * onScroll 不是 view 移动，指的是手指在 view 上移动
+     * 相当于手指在 view 上的 Move 事件
      * distanceX, distanceY 是开始位置 - 当前位置的值
      * 和平时用的相反
      *
@@ -166,6 +176,8 @@ class ScalableImageView(context: Context?, attrs: AttributeSet?) : View(context,
         if (!isSmall) {
             offsetX -= distanceX
             /**
+             *  手指滑动时，改变 offsetX，offsetY，这样就有了动画效果
+             *
              *  限制 offsetX 的范围，以免滑出屏幕
              *  -（图片宽度 - 屏幕宽度）/ 2 <= offsetX <= （图片宽度 - 屏幕宽度）/ 2
              */
@@ -181,8 +193,8 @@ class ScalableImageView(context: Context?, attrs: AttributeSet?) : View(context,
     }
 
     /**
-     * 松手后，快滑
-     * velocityX, velocityY 单位时间的位移
+     * onFling 指的是快滑松手后，view 的惯性滑动
+     * velocityX, velocityY 单位时间的位移，表示惯性滑动的初速度
      * 返回值无所谓
      */
     override fun onFling(
@@ -192,12 +204,14 @@ class ScalableImageView(context: Context?, attrs: AttributeSet?) : View(context,
         velocityY: Float
     ): Boolean {
         if (!isSmall) {
+            // fling时，run() 改变 offsetX，offsetY，这样就有了动画效果
             scroller.fling(
-                offsetX.toInt(), offsetY.toInt(), velocityX.toInt(), velocityY.toInt(),
-                (-(bitmap.width * bigScale - width) / 2).toInt(), // 最小x
-                ((bitmap.width * bigScale - width) / 2).toInt(), // 最大x
-                (-(bitmap.height * bigScale - height) / 2).toInt(), // 最小y
-                ((bitmap.height * bigScale - height) / 2).toInt()) // 最大y
+                offsetX.toInt(), offsetY.toInt(), // 起始的 x, y
+                velocityX.toInt(), velocityY.toInt(),
+                (-(bitmap.width * bigScale - width) / 2).toInt(), // 滑动时最小x
+                ((bitmap.width * bigScale - width) / 2).toInt(), // 滑动时最大x
+                (-(bitmap.height * bigScale - height) / 2).toInt(), // 滑动时最小y
+                ((bitmap.height * bigScale - height) / 2).toInt()) // 滑动时最大y
             // postOnAnimation 下一帧时，去执行动画
             postOnAnimation(this)
         }
@@ -209,6 +223,7 @@ class ScalableImageView(context: Context?, attrs: AttributeSet?) : View(context,
             offsetX = scroller.currX.toFloat()
             offsetY = scroller.currY.toFloat()
             invalidate()
+            // 下一帧时，去执行动画
             postOnAnimation(this)
         }
     }
