@@ -218,8 +218,13 @@ class CompatScalableImageView(context: Context?, attrs: AttributeSet?) : View(co
                  *  ViewCompat.postOnAnimation 和 postOnAnimation 效果一样，都是下一帧时，去执行动画
                  *  但是使用了 Compat ，兼容性更好
                  */
-                ViewCompat.postOnAnimation(this@CompatScalableImageView, myRunnable)
-
+//                ViewCompat.postOnAnimation(this@CompatScalableImageView, myRunnable)
+                /**
+                 * 使用 postInvalidateOnAnimation 实现 postOnAnimation 一样的效果
+                 * 原理和 postOnAnimation 是一样的，不用传递 Runnable 进去了
+                 * 在 computeScroll() 里面，再次调用 postInvalidateOnAnimation
+                 */
+                postInvalidateOnAnimation()
             }
             return true
         }
@@ -249,6 +254,14 @@ class CompatScalableImageView(context: Context?, attrs: AttributeSet?) : View(co
                 // 下一帧时，去执行动画
                 ViewCompat.postOnAnimation(this@CompatScalableImageView, this)
             }
+        }
+    }
+
+    override fun computeScroll() {
+        if (scroller.computeScrollOffset()) {
+            offsetX = scroller.currX.toFloat()
+            offsetY = scroller.currY.toFloat()
+            postInvalidateOnAnimation()
         }
     }
 
