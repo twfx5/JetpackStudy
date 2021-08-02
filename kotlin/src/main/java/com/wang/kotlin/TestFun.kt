@@ -86,6 +86,16 @@ fun test(t : Int) {
     }
 }
 
+private fun resultByOpt(num1 : Int , num2 : Int , result : (Int ,Int) -> Int) : Int{
+    return result(num1,num2)
+}
+
+fun testOpt() {
+    val result = resultByOpt(1, 2) { num1, num2 ->
+        num1 + num2
+    }
+}
+
 
 
 
