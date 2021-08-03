@@ -10,7 +10,23 @@ fun main() {
     //testFilter()
     //testFilterAndMap()
     //testAny()
-    testAll()
+    //testAll()
+    testToSet()
+}
+
+/**
+ *  toSet 对集合中元素 去重
+ *  返回值 Set
+ */
+private fun testToSet() {
+    // mutableListOf可变集合
+    val list = mutableListOf("apple", "orange")
+    list.add("apple")
+    list.add("apple")
+    // 去重
+    val result = list.toSet()
+    println(result)
+    // 结果 [apple, orange]
 }
 
 /**
@@ -65,3 +81,4 @@ private fun testAll() {
     println(result)
     // 结果 false
 }
+
