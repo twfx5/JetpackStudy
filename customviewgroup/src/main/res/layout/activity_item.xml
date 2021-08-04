@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <com.wang.customviewgroup.ItemLayout
+        android:id="@+id/item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="80dp"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/app_item"
+        android:background="#FFF5F5F8"
+        android:layout_width="310dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="80dp"
+        app:layout_constraintStart_toStartOf="@id/item"
+        app:layout_constraintTop_toBottomOf="@id/item">
+
+        <ImageView
+            android:id="@+id/iv_app_icon"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:src="@drawable/ic_download"/>
+
+        <TextView
+            android:id="@+id/tv_app_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_app_icon"
+            app:layout_constraintEnd_toStartOf="@id/progress_view"
+            app:layout_constraintBottom_toTopOf="@id/tv_app_des"
+            app:layout_constraintVertical_chainStyle="spread_inside"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="10dp"
+            android:ellipsize="end"
+            android:gravity="start"
+            android:clipChildren="false"
+            android:singleLine="true"
+            android:text="WPS Office + xml布局"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_app_des"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tv_app_name"
+            app:layout_constraintStart_toStartOf="@id/tv_app_name"
+            app:layout_constraintEnd_toStartOf="@id/progress_view"
+            app:layout_constraintBottom_toTopOf="@id/size"
+            android:ellipsize="end"
+            android:gravity="start"
+            android:clipChildren="false"
+            android:singleLine="true"
+            android:text="最实用的办公国产软件"
+            android:textColor="#66000000"
+            android:textSize="11sp" />
+
+        <TextView
+            android:id="@+id/size"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tv_app_des"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tv_app_name"
+            app:layout_constraintEnd_toStartOf="@id/progress_view"
+            android:layout_marginBottom="10dp"
+            android:text="35M"
+            android:textColor="#66000000"
+            android:textSize="11sp"/>
+
+        <TextView
+            android:id="@+id/progress_view"
+            android:layout_width="50dp"
+            android:layout_height="25dp"
+            android:background="@drawable/bg_item"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:text="安装"
+            android:textSize="14sp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

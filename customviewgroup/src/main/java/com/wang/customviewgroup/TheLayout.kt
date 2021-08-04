@@ -17,7 +17,7 @@ import androidx.core.view.marginTop
  * Created at 2021/8/3 下午10:22.
  * @author wang
  */
-const val TAG = "TheLayout"
+private const val TAG = "TheLayout"
 class TheLayout(context: Context, attrs: AttributeSet?) : ViewGroup(context, attrs) {
 
     private val bg = AppCompatImageView(context).apply {

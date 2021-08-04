@@ -87,10 +87,10 @@ fun Int.toAtMostMeasureSpec(): Int{
     return MeasureSpec.makeMeasureSpec(this, MeasureSpec.AT_MOST)
 }
 
-fun View.layout(x: Int, y: Int, fromRight: Boolean = false ) {
-    if (!fromRight) {
-        layout(x, y, x + measuredWidth, y + measuredHeight)
-    } else {
-    }
+/**
+ * 扩展方法:布局
+ */
+fun View.layout(x: Int, y: Int) {
+    layout(x, y, x + measuredWidth, y + measuredHeight)
 }
 
