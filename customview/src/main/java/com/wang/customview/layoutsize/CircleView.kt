@@ -10,7 +10,7 @@ import com.wang.customview.dp
 
 private val RADIUS = 100.dp
 private val PADDING = 100.dp
-const val TAG = "CircleView"
+private const val TAG = "CircleView"
 class CircleView(context: Context, attrs: AttributeSet?) : View(context, attrs) {
 
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG)

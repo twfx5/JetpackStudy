@@ -83,10 +83,10 @@ class MainActivity : AppCompatActivity() {
 //        setContentView(R.layout.activity_material_edittext)
 
         // 简单改写已有 View 的尺寸,变为原尺寸的一半
-//        setContentView(R.layout.activity_square)
+        setContentView(R.layout.activity_square)
 
         // 完全自定义 View 的尺寸
-        setContentView(R.layout.activity_resize_circle)
+        //setContentView(R.layout.activity_resize_circle)
 
         // 自定义 ViewGroup，横向排列一组图片
 //        setContentView(R.layout.activity_single_view)
