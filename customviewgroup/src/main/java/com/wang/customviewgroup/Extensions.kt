@@ -8,6 +8,7 @@ import android.util.TypedValue
 import android.view.View
 import android.view.View.*
 import android.view.ViewGroup
+import android.widget.TextView
 import java.lang.IllegalArgumentException
 
 
@@ -15,17 +16,7 @@ import java.lang.IllegalArgumentException
 //    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this, Resources.getSystem().displayMetrics)
 //}
 
-// 扩展属性
-val Float.px
-    get() = TypedValue.applyDimension(
-        TypedValue.COMPLEX_UNIT_DIP,
-        this,
-        Resources.getSystem().displayMetrics
-    )
-
-val Int.px
-    get() = this.toFloat().px.toInt()
-
+// 扩展属性  dp 转为 px
 val Float.dp
     get() = TypedValue.applyDimension(
         TypedValue.COMPLEX_UNIT_DIP,
@@ -36,6 +27,21 @@ val Float.dp
 val Int.dp
     get() = TypedValue.applyDimension(
         TypedValue.COMPLEX_UNIT_DIP,
+        this.toFloat(),
+        Resources.getSystem().displayMetrics
+    ).toInt()
+
+// 扩展属性  sp 转为 px
+val Float.sp
+    get() = TypedValue.applyDimension(
+        TypedValue.COMPLEX_UNIT_SP,
+        this,
+        Resources.getSystem().displayMetrics
+    )
+
+val Int.sp
+    get() = TypedValue.applyDimension(
+        TypedValue.COMPLEX_UNIT_SP,
         this.toFloat(),
         Resources.getSystem().displayMetrics
     ).toInt()
@@ -56,7 +62,7 @@ fun getAvatar(resources: Resources, width: Int) : Bitmap {
 }
 
 /**
- * 默认的测量方式 width
+ * 默认的测量方式,获取 widthMeasureSpec
  */
 fun View.defaultWidthMeasureSpec(parentView: ViewGroup): Int {
     return when(layoutParams.width) {
@@ -68,7 +74,7 @@ fun View.defaultWidthMeasureSpec(parentView: ViewGroup): Int {
 }
 
 /**
- * 默认的测量方式 height
+ * 默认的测量方式,获取 heightMeasureSpec
  */
 fun View.defaultHeightMeasureSpec(parentView: ViewGroup): Int {
     return when(layoutParams.height) {
@@ -92,5 +98,12 @@ fun Int.toAtMostMeasureSpec(): Int{
  */
 fun View.layout(x: Int, y: Int) {
     layout(x, y, x + measuredWidth, y + measuredHeight)
+}
+
+/**
+ * 设置字体大小
+ */
+fun TextView.setTextSizeSp(px: Int) {
+    setTextSize(TypedValue.COMPLEX_UNIT_PX, px.toFloat() * 2)
 }
 

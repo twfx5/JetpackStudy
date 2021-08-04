@@ -21,12 +21,16 @@ class CircleView(context: Context, attrs: AttributeSet?) : View(context, attrs) 
         val size = ((PADDING + RADIUS) * 2).toInt()
         /**
          * resolveSize的作用
-         * 根据 MeasureSpec（MeasureSpec ：父控件对我的限制和LayoutParams）修正自己的大小
-         * LayoutParams 是 xml 中定义的大小 200dp x 200dp
-         * 这样通过 resolveSize 计算后的结果，就和开发中在 xml 中定义的是一样的了
+         * 根据 MeasureSpec（MeasureSpec ：父控件对我的限制和LayoutParams）[修正] 自己的大小
+         * LayoutParams 是 xml 中定义的大小
+         * 这样通过 resolveSize 计算后的结果，就和开发者在 xml 中定义的是一样的了
+         * 因为[开发者的决定最重要]!!!
          *
-         * 如果设置的 200dp x 200dp ，就显示不完整
-         * 如果设置的 wrap_content x wrap_content ，就显示我们自己设置的size 400dp x 400dp
+         * 例如:
+         * 如果在xml中设置的 LayoutParams 是 200dp x 200dp ，那么就显示不完整:
+         * 因为我们自己设置的是 400dp x 400dp,但是通过 xml 的 LayoutParams进行修正,会被裁剪一部分
+         *
+         * 如果在xml中设置的 LayoutParams 是 wrap_content x wrap_content ，就显示我们自己设置的size 400dp x 400dp
          */
         val width = resolveSize(size, widthMeasureSpec)
         val height = resolveSize(size, heightMeasureSpec)

@@ -38,7 +38,7 @@ class TheLayout(context: Context, attrs: AttributeSet?) : ViewGroup(context, att
     }
 
     private val title = AppCompatTextView(context).apply {
-        textSize = 8f.dp
+        setTextSizeSp(16)
         text = "小伙伴们，因武汉院调整了组织架构，新办公室的工位图也做了调整，请大家知晓"
         layoutParams = MarginLayoutParams(WRAP_CONTENT, WRAP_CONTENT).apply {
             leftMargin = 40.dp

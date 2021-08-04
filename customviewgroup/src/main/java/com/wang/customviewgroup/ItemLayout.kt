@@ -27,7 +27,7 @@ class ItemLayout(context: Context, attrs: AttributeSet?) : BaseLayout(context, a
     }
 
     private val title = TextView(context).apply {
-        textSize = 7f.dp
+        setTextSizeSp(14)
         setTextColor(Color.parseColor("#FF000000"))
         text = "WPS Office + ItemLayout"
         layoutParams = MarginLayoutParams(WRAP_CONTENT, WRAP_CONTENT).apply {
@@ -38,7 +38,7 @@ class ItemLayout(context: Context, attrs: AttributeSet?) : BaseLayout(context, a
     }
 
     private val summary = TextView(context).apply {
-        textSize = 5f.dp
+        setTextSizeSp(10)
         setTextColor(Color.parseColor("#66000000"))
         text = "最实用的办公国产软件"
         layoutParams = MarginLayoutParams(WRAP_CONTENT, WRAP_CONTENT).apply {
@@ -49,7 +49,7 @@ class ItemLayout(context: Context, attrs: AttributeSet?) : BaseLayout(context, a
     }
 
     private val size = TextView(context).apply {
-        textSize = 5f.dp
+        setTextSizeSp(10)
         setTextColor(Color.parseColor("#66000000"))
         text = "35M"
         layoutParams = MarginLayoutParams(WRAP_CONTENT, WRAP_CONTENT).apply {
@@ -60,7 +60,7 @@ class ItemLayout(context: Context, attrs: AttributeSet?) : BaseLayout(context, a
     }
 
     private val button = TextView(context).apply {
-        textSize = 7f.dp
+        setTextSizeSp(14)
         setTextColor(Color.BLACK)
         text = "安装"
         setPadding(11.dp, 3.dp, 11.dp, 3.dp)

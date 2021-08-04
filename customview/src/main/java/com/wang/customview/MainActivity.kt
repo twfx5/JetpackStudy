@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
 //        setContentView(R.layout.activity_pie)
 
         // 头像
-        setContentView(R.layout.activity_avatar)
+//        setContentView(R.layout.activity_avatar)
 
         // Path 裁切
 //        setContentView(R.layout.activity_clip)
@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity() {
 //        setContentView(R.layout.activity_square)
 
         // 完全自定义 View 的尺寸
-//        setContentView(R.layout.activity_resize_circle)
+        setContentView(R.layout.activity_resize_circle)
 
         // 自定义 ViewGroup，横向排列一组图片
 //        setContentView(R.layout.activity_single_view)
@@ -95,7 +95,7 @@ class MainActivity : AppCompatActivity() {
 //        setContentView(R.layout.activity_scalable_imageview)
 
         // 支持 双击缩放 和 双向滑动的 ImageView，代码做了优化处理
-        setContentView(R.layout.activity_comp_scalable_imageview)
+//        setContentView(R.layout.activity_comp_scalable_imageview)
     }
 
 
