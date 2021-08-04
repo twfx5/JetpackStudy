@@ -1,6 +1,7 @@
 package com.wang.customviewgroup
 
 import android.content.res.Resources
+import android.drm.DrmRights
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.TypedValue
@@ -54,6 +55,9 @@ fun getAvatar(resources: Resources, width: Int) : Bitmap {
     return BitmapFactory.decodeResource(resources, R.drawable.xiaoxin, options)
 }
 
+/**
+ * 默认的测量方式 width
+ */
 fun View.defaultWidthMeasureSpec(parentView: ViewGroup): Int {
     return when(layoutParams.width) {
         ViewGroup.LayoutParams.MATCH_PARENT -> parentView.measuredWidth.toExactlyMeasureSpec()
@@ -63,6 +67,9 @@ fun View.defaultWidthMeasureSpec(parentView: ViewGroup): Int {
     }
 }
 
+/**
+ * 默认的测量方式 height
+ */
 fun View.defaultHeightMeasureSpec(parentView: ViewGroup): Int {
     return when(layoutParams.height) {
         ViewGroup.LayoutParams.MATCH_PARENT -> parentView.measuredHeight.toExactlyMeasureSpec()
@@ -78,5 +85,12 @@ fun Int.toExactlyMeasureSpec(): Int{
 
 fun Int.toAtMostMeasureSpec(): Int{
     return MeasureSpec.makeMeasureSpec(this, MeasureSpec.AT_MOST)
+}
+
+fun View.layout(x: Int, y: Int, fromRight: Boolean = false ) {
+    if (!fromRight) {
+        layout(x, y, x + measuredWidth, y + measuredHeight)
+    } else {
+    }
 }
 
