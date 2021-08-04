@@ -101,9 +101,9 @@ fun View.layout(x: Int, y: Int) {
 }
 
 /**
- * 设置字体大小
+ * 设置字体大小，参数传递为 10.sp
  */
-fun TextView.setTextSizeSp(px: Int) {
-    setTextSize(TypedValue.COMPLEX_UNIT_PX, px.toFloat() * 2)
+fun TextView.setTextSizeSp(sp: Int) {
+    setTextSize(TypedValue.COMPLEX_UNIT_PX, sp.toFloat())
 }
 

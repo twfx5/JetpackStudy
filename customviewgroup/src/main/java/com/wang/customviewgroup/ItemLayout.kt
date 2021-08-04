@@ -27,7 +27,7 @@ class ItemLayout(context: Context, attrs: AttributeSet?) : BaseLayout(context, a
     }
 
     private val title = TextView(context).apply {
-        setTextSizeSp(14)
+        setTextSizeSp(14.sp)
         setTextColor(Color.parseColor("#FF000000"))
         text = "WPS Office + ItemLayout"
         layoutParams = MarginLayoutParams(WRAP_CONTENT, WRAP_CONTENT).apply {
@@ -38,7 +38,7 @@ class ItemLayout(context: Context, attrs: AttributeSet?) : BaseLayout(context, a
     }
 
     private val summary = TextView(context).apply {
-        setTextSizeSp(10)
+        setTextSizeSp(10.sp)
         setTextColor(Color.parseColor("#66000000"))
         text = "最实用的办公国产软件"
         layoutParams = MarginLayoutParams(WRAP_CONTENT, WRAP_CONTENT).apply {
@@ -49,7 +49,7 @@ class ItemLayout(context: Context, attrs: AttributeSet?) : BaseLayout(context, a
     }
 
     private val size = TextView(context).apply {
-        setTextSizeSp(10)
+        setTextSizeSp(10.sp)
         setTextColor(Color.parseColor("#66000000"))
         text = "35M"
         layoutParams = MarginLayoutParams(WRAP_CONTENT, WRAP_CONTENT).apply {
@@ -60,7 +60,7 @@ class ItemLayout(context: Context, attrs: AttributeSet?) : BaseLayout(context, a
     }
 
     private val button = TextView(context).apply {
-        setTextSizeSp(14)
+        setTextSizeSp(14.sp)
         setTextColor(Color.BLACK)
         text = "安装"
         setPadding(11.dp, 3.dp, 11.dp, 3.dp)
@@ -92,17 +92,22 @@ class ItemLayout(context: Context, attrs: AttributeSet?) : BaseLayout(context, a
         image.let {
             it.layout(0, it.marginTop)
         }
-
+        /**
+         * title 在 image 的右边，所以使用 image.right
+         *
+         * Tips：view 调用 layout 后，left、right、top、bottom就有了值
+         *       这时也就能获取到 width 和 height了
+         */
         title.let {
-            it.layout(image.measuredWidth + it.marginLeft, image.marginTop)
+            it.layout(image.right + it.marginLeft, image.marginTop)
         }
 
         summary.let {
-            it.layout(image.measuredWidth + title.marginLeft, title.bottom + it.marginTop)
+            it.layout(image.right + title.marginLeft, title.bottom + it.marginTop)
         }
 
         size.let {
-            it.layout(image.measuredWidth + title.marginLeft, summary.bottom + it.marginTop)
+            it.layout(image.right + title.marginLeft, summary.bottom + it.marginTop)
         }
 
         button.let {
