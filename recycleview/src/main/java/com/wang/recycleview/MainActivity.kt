@@ -29,7 +29,9 @@ val Int.dp
 const val TAG = "MainActivity"
 
 /**
- *  自定义 RecycleView 的分隔线
+ *  自定义 RecycleView item 的装饰效果
+ *  item 设置分隔线
+ *  item 分组效果
  */
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -73,6 +75,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // 自定义 MyItemDecoration 继承RecyclerView.ItemDecoration
+    // 类似源码默认的 DividerItemDecoration
     class MyItemDecoration : RecyclerView.ItemDecoration() {
 
         private lateinit var drawable: Drawable
@@ -85,6 +89,7 @@ class MainActivity : AppCompatActivity() {
         // 绘制不顶头的分隔线
         /*override fun onDraw(canvas: Canvas, parent: RecyclerView, state: RecyclerView.State) {
             canvas.save()
+            // SHE左边间距 15dp
             val left: Int = 15.dp
             val right = parent.width
 

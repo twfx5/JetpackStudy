@@ -6,3 +6,5 @@ include ':customview'
 rootProject.name = "JetpackStudy"
 include ':kotlin'
 include ':customviewgroup'
+include ':recycleview'
+include ':constraintlayout'
