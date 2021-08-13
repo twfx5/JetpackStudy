@@ -42,7 +42,7 @@ private fun testMap() {
 }
 
 /**
- * filter 过滤集合中的数据
+ * filter 按照某个条件，过滤集合中的数据
  */
 private fun testFilter() {
     val list = listOf("apple", "orange", "watermelon", "pear")
