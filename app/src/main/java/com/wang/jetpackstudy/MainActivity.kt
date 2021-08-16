@@ -32,7 +32,9 @@ class MainActivity : AppCompatActivity(), UserModel.LoginStateChange {
         tvState = findViewById(R.id.text_state)
 
         btLogin.setOnClickListener {
-            toLogin()
+            //toLogin()
+            val demo = WaitNotifyDemo()
+            demo.run()
         }
     }
 
