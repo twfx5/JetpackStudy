@@ -7,7 +7,6 @@ import android.util.Log
  * @author wang
  * 内联函数
  */
-const val TAG = "inline"
 
 fun main() {
     /**
@@ -38,10 +37,10 @@ fun main() {
  * Inlining works best for functions with parameters of functional types
  */
 inline fun log() {
-    Log.e(TAG, "log: ")
-    Log.e(TAG, "log: ")
-    Log.e(TAG, "log: ")
-    Log.e(TAG, "log: ")
+    Log.e("TAG", "log: ")
+    Log.e("TAG", "log: ")
+    Log.e("TAG", "log: ")
+    Log.e("TAG", "log: ")
 }
 
 inline fun test(action:(Int) -> String) {

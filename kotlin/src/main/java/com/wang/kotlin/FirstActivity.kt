@@ -3,15 +3,17 @@ package com.wang.kotlin
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.edit
-
-class MainActivity : AppCompatActivity() {
+private const val TAG = "FirstActivity"
+class FirstActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_first)
+        Log.e(TAG, "onCreate: taskId = $taskId")
 
         // lambda 的使用
         val textView = findViewById<TextView>(R.id.text)
@@ -33,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         textView.setOnClickListener {  }
 
         textView.setOnClickListener {
-            Toast.makeText(this@MainActivity, "123", Toast.LENGTH_LONG).show()
+            Toast.makeText(this@FirstActivity, "123", Toast.LENGTH_LONG).show()
         }
 
         // 2 高阶函数的使用
@@ -45,6 +47,12 @@ class MainActivity : AppCompatActivity() {
         val editor2 = getPreferences(Context.MODE_PRIVATE).edit {
             putInt("bbb", 20)
             putBoolean("ccc", true)
+        }
+
+        findViewById<TextView>(R.id.jump).apply {
+            setOnClickListener {
+                SecondActivity.startActivity(context)
+            }
         }
     }
 }
