@@ -22,5 +22,21 @@ allprojects {
 }
 
 task clean(type: Delete) {
+    println 1
     delete rootProject.buildDir
+    println 2
+}
+
+task test() {
+    doFirst {
+        println 1
+    }
+
+    doLast {
+        println 3
+    }
+
+    doFirst {
+        println 2
+    }
 }
