@@ -1,0 +1,81 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+// 定义扩展，扩展类不需要实现或继承，直接写个类就行
+class MyExtensions {
+    String name1
+    String name2
+}
+
+class MyPlugin implements Plugin<Project> {
+
+    @Override
+    void apply(Project project) {
+        project.extensions.create("wzh",MyExtensions)
+        project.tasks.create("myTask",{
+            MyExtensions config = project.wzh
+            doFirst {
+                println config.name1
+            }
+
+            doLast {
+                println config.name2
+            }
+        })
+        println "my plugin running"
+    }
+}
+
+apply plugin: MyPlugin // 执行插件中的 apply 方法
+// 自定义的扩展，类似 android
+wzh {
+    name1 "doFist"
+    name2 "doLast"
+}
+
+apply plugin: 'printplugin'
+
+wangzh {
+    name 'change PrintExtension name'
+}
+
+android {
+    compileSdkVersion 30
+
+    defaultConfig {
+        applicationId "com.wang.gradleplugin"
+        minSdkVersion 23
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.6.0'
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+}
