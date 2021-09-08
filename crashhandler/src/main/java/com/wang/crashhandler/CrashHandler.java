@@ -2,22 +2,12 @@ package com.wang.crashhandler;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Environment;
 import android.os.Looper;
 import android.os.SystemClock;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * Created at 2021/8/18 上午6:42.
@@ -60,18 +50,30 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler{
     @Override
     public void uncaughtException(@NonNull Thread t, @NonNull Throwable e) {
         if (!handleException(e) && mDefaultHandler != null) {
+            /**
+             * 在自定义异常处理类中需要持有线程默认异常处理类。
+             * 这样做的目的是在自定义异常处理类无法处理或者处理异常失败时，还可以将异常交给系统做默认处理。
+             */
             // 如果自定义的没有处理 handleException 返回 false
             // 则让系统默认的异常处理器来处理
             mDefaultHandler.uncaughtException(t, e);
         } else {
+            /**
+             * 如果自定义异常处理类成功处理异常，需要进行页面跳转，或者将程序进程“杀死”。
+             * 否则程序会一直卡死在崩溃界面，并弹出无响应对话框。
+             */
             // 如果处理了，让程序继续运行3秒再退出，保证文件保存并上传到服务器
             SystemClock.sleep(3000);
+
+
+            // 跳转到异常提示界面 或者 重启主界面
+            Intent intent = new Intent(mContext, ErrorNoticeActivity.class);//跳转到App最开始的页面
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            mContext.startActivity(intent);
+
+            // 杀掉程序
             android.os.Process.killProcess(android.os.Process.myPid());
-            System.exit(1);
-            // 或者重启主界面（下面方法又问题）
-           /* Intent intent = new Intent(mContext, FirstActivity.class);//跳转到App最开始的页面
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            mContext.startActivity(intent);*/
+            System.exit(0);
         }
     }
 
